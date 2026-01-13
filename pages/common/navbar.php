@@ -214,15 +214,19 @@ function viewImage(file, type) {
     if (!file || file === 'null') return;
     
     // Sesuaikan path folder foto Anda di sini
-    const folder = type === 'paket' ? 'paket' : 'status'; 
+    // Foto paket ada di folder 'paket', Foto penerima ada di folder 'fotoPenerima'
+    const folder = type === 'paket' ? 'paket' : 'fotoPenerima'; 
     const fullPath = `/cobaExpedisi/pages/uploads/${folder}/${file}`;
 
     Swal.fire({
-        title: `Bukti Foto ${type}`,
+        title: `Bukti Foto ${type === 'paket' ? 'Paket' : 'Penerima'}`,
         imageUrl: fullPath,
         imageAlt: 'Gambar tidak ditemukan',
+        imageWidth: 400, // Ukuran lebar preview gambar
+        imageHeight: 'auto',
         showConfirmButton: false,
-        showCloseButton: true
+        showCloseButton: true,
+        footer: `<a href="${fullPath}" target="_blank" class="text-blue-500 text-xs">Buka gambar di tab baru</a>`
     });
 }
 </script>
